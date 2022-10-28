@@ -1,0 +1,30 @@
+from Functions import *
+import mysql.connector as sql
+import tkinter as tk
+from PIL import ImageTk #module to import image
+
+bg_color="#211f20"
+fg_color="white"
+
+root = tk.Tk() #intitialize app
+
+root.title("Fitness Centre Management") #title of app window
+root.eval("tk::PlaceWindow . center") #app window pops at centre of the screen using TCL
+
+frame1=tk.Frame(root, width=900, height=700, bg=bg_color) #set default app window size and bg color
+frame1.grid(row=0,column=0) #apply settings to app window
+frame1.pack_propagate(False)
+
+#frame1 widgets
+tk.Label(frame1, text="Fitness Centre Management System", bg=bg_color,fg=fg_color, font=("TkHeadingFont",30)).pack() #heading
+
+#logo
+logo_img=ImageTk.PhotoImage(file="Gym management project/logo.jpg") #load logo file
+logo_widget=tk.Label(frame1, image=logo_img,bg=bg_color,height=300)
+logo_widget.image=logo_img
+logo_widget.pack()
+
+
+
+
+root.mainloop() #run app
