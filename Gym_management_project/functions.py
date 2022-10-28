@@ -58,6 +58,11 @@ def delete_MemInfo_entry():
     except sql.Error as er:
         print('Error:',er)
 
+def cleanslate():
+    query=('''drop table mem_info)
+    
+        
+
        
 
 #def update_MemInfo():
