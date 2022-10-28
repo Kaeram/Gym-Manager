@@ -1,10 +1,11 @@
 import mysql.connector as sql
 #Connection
 con=sql.connect(host='localhost',user='root',password='root',database='Gym')
-if con.is_connected():
-    print('Connection Successful')
-else:
-    print("Connection Failed")
+def concheck():
+    if con.is_connected():
+        print('Connection Successful')
+    else:
+        print("Connection Failed")
 cu=con.cursor() #Creating Cursor
 
 
@@ -14,8 +15,8 @@ def authenticate():
         UserID=input("Enter User_ID: ")
         
         
-        if UserID=="Kaushike.R" or UserID=="Amrit.N" or UserID=="Shourya.H":
-            print("Access Granted")
+        if UserID=="Kaushike.R" or UserID=="Amrit.N" or UserID=="Shourya.H" or UserID=="admin":
+            return(True)
             
         else:
             print("Access Denied")
@@ -59,8 +60,11 @@ def delete_MemInfo_entry():
         print('Error:',er)
 
 def cleanslate():
-    query=('''drop table mem_info)
-    
+    '''for testing purposes'''
+    query=('''drop table mem_info''')
+    cu.execute(query)
+    print('database cleared')
+
         
 
        
