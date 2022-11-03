@@ -1,8 +1,11 @@
 from functions import *
 import tabulate as tb
+#package_data()
 
 
-while authenticate() is True:
+
+
+def menu():
     print("*"*10,"Fitness Centre Management System","*"*10)
     print("Welcome User, Enter appropriate choice")
     print("1.Main")
@@ -10,60 +13,83 @@ while authenticate() is True:
     print ("Type 'Quit' or 'Exit' to exit")
     ch=str(input("Enter your choice: "))
     if ch=='1': #Main
-        print ('*'*5,'Gym Management System','*'*5)
-        print ('Hello User, Select a command')
-        print ("M1. Add Customer")
-        print ("M2. Delete Customer")
-        print ("M3. Show all packages")
-        print ("M4. Show all customers")
-        print ("M5. Find customer by name")
-        print ("Type 'Quit' or 'Exit' to exit")
-        ch=str(input("Enter your choice:"))
-        
-        if ch=='M1'or ch=="m1":
-            insert_into_table_Meminfo()
-    
-        elif ch=="cleanslate":
-            cleanslate()
-
-        elif ch=='quit' or 'Quit' or 'exit' or 'Exit':
-            print("Developed by Kaushike Ramanathan, Amrit Nigam and Shourya Hedaoo as Investigatory Project")
-            break   
+        main()
     elif ch=='2': #Admin tools
-        
+        admin()
+    
+    elif ch=='quit' or 'Quit' or 'exit' or 'Exit':
+            print("Developed by Kaushike Ramanathan, Amrit Nigam and Shourya Hedaoo as Investigatory Project")
+            quit()
+                 
+def main():
+    print ('*'*15,'Gym Management System','*'*15)
+    print ('Hello User, Select a command')
+    print ("M1. Add Customer")
+    print ("M2. Show all packages")
+    print ("M3. Show all customers")
+    print ("Type 'Quit' or 'Exit' to exit")
+    ch=str(input("Enter your choice:"))
+    if ch=='M1'or ch=="m1":
+        insert_into_table_Meminfo()
+        menu()
+ 
+
+    elif ch=='M2'or ch=='m2':
+        display_package()
+        menu()  
+
+    elif ch=='M3' or ch=='m3':
+        display_allmem()
+        menu() 
+
+    elif ch=='M4' or ch=='m4':
+        #find_mem()
+        menu()       
+
+    elif ch=="cleanslate":
+         cleanslate()
+         menu()
+         
+    elif ch=='quit' or 'Quit' or 'exit' or 'Exit':
+            print("Developed by Kaushike Ramanathan, Amrit Nigam and Shourya Hedaoo as Investigatory Project")
+            quit()
+                  
+
+def admin():
+            print("*"*45)
+            print ('Hello User, Select a command')
             print("Type 'concheck' to check connection")
             print("Type 'cleanslate' to clear database")
-            print("1.Add Employee")
+            print("A1.Add Employee")
+            print("A2.Show All Employees")
             ch=str(input("Enter choice:  "))
             if ch=='concheck':
                 concheck()
+                menu()
             elif ch=='cleanslate':  
                 cleanslate()
-            elif ch=='1':
-                insert_into_emp()    
+                menu()
+            
+            elif ch=='A1' or ch=='a1' :
+                insert_into_emp()
+                menu()
 
-            break
-    elif ch=="3":
-        delete_MemInfo_entry() 
+            elif ch=="A2" or ch=="a2":
+                display_allemp()
+                main() 
+            
+            elif ch=='quit' or 'Quit' or 'exit' or 'Exit':
+                print("Developed by Kaushike Ramanathan, Amrit Nigam and Shourya Hedaoo as Investigatory Project")
+                quit()
 
-    elif ch=='quit' or 'Quit' or 'exit' or 'Exit':
-        print("Developed by Kaushike Ramanathan, Amrit Nigam and Shourya Hedaoo as Investigatory Project")
-
-
-
-
-
-
-
-
-
+            
+           
 
 
 
-
-
-
-
-    break
-
+        
+#main
+while authenticate() is True:
+    menu()
+ 
 
