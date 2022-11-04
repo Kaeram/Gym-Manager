@@ -1,4 +1,4 @@
-Final Build (V.5)
+Final Build (v.1.0)
 
 Gym-Manager
 Fitness centre management system made by Kaushike Ramanathan, Amrit Nigam Nigameshwar Sugyani Subudhi Patra & Shourya Hedaoo 
