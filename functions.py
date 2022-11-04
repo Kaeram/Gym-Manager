@@ -5,7 +5,7 @@ import tabulate as tb
 
 
 #Connection
-con=sql.connect(host='localhost',user='root',password='root',database='Gym')
+con=sql.connect(host='localhost',user='root',password='root')
 def concheck():
     if con.is_connected():
         print('Connection Successful')
@@ -42,7 +42,7 @@ def create_table_Meminfo():
         cu.execute(query)
     except Exception as e:
         print("Error:",e)    
-create_table_Meminfo()
+
 
 def emp_table():
     '''function to create table in MySQL to store trainer/employee details'''
@@ -61,7 +61,7 @@ def emp_table():
             '''
     except Exception as e:
         print("Error:",e)
-emp_table()
+
 
 def package_data():
 
