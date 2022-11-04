@@ -5,7 +5,7 @@ import tabulate as tb
 
 
 #Connection
-con=sql.connect(host='localhost',user='root',password='root')
+con=sql.connect(host='localhost',user='root',password='root',database='Gym')
 def concheck():
     if con.is_connected():
         print('Connection Successful')
@@ -34,9 +34,11 @@ def create_table_Meminfo():
         (
             Mem_ID int primary key,
             Mem_Name varchar(30),
-            age int,
             Phone_No char(10),
-            DOJ date
+            DOJ date,
+            Gender char(1),
+            Weight int,
+            Address varchar(150)
             )
             '''
         cu.execute(query)
@@ -46,23 +48,20 @@ def create_table_Meminfo():
 
 def emp_table():
     '''function to create table in MySQL to store trainer/employee details'''
-    try:
-        query='''
-        Create table if not exits emp_table
+    query='''
+        Create table if not exists emp_table
         (
             emp_id int,
             emp_name varchar(30),
             gender char(1),
             DOB date,
             designation varchar(30),
-            mob_no char(10)
+            mob_no char(10),
             address varchar(100)
             )
             '''
-    except Exception as e:
-        print("Error:",e)
-
-
+    cu.execute(query)
+ 
 def package_data():
 
     '''Function to create table in MySQL to store package info'''
@@ -78,12 +77,6 @@ def package_data():
              '''
     cu.execute(query1)  
         
-    query2='''insert into package values(1,'Beginner','Y',1000)'''
-    query3='''insert into package values(2,'Amatuer','Y',1500)'''
-    query4='''insert into package values(3,'Experienced','N',3000)'''
-    cu.execute(query2)
-    cu.execute(query3)
-    cu.execute(query4)
 
 def insert_into_table_Meminfo():
     '''Function to insert data into Meminfo'''
@@ -91,12 +84,13 @@ def insert_into_table_Meminfo():
         Mem_ID=input("Enter Membership ID:  ")
         Mem_Name=input("Enter Member Name:  ")
         Phone_No=int(input("Enter Phone number:  "))
-        DOJ=input("Enter date of joining (YY-MM-DD):  ")
+        #dob=input("Enter date of joining(YY-MM-DD):")
+        doj=input("Enter date of joining (YY-MM-DD):  ")
         Gender=input("Gender (M/F/O):  ")
         Weight=int(input("Enter weight: "))
         Address=input("Enter residential address: ")
-        query='''insert into Mem_Info(Mem_ID,Mem_Name,Phone_No,DOJ)Values(%s,%s,%s,%s)'''
-        val=(Mem_ID,Mem_Name,Phone_No,DOJ)
+        query='''insert into Mem_Info(Mem_ID,Mem_Name,Phone_No,DOJ,Gender,Weight,Address)Values(%s,%s,%s,%s,%s,%s,%s)'''
+        val=(Mem_ID,Mem_Name,Phone_No,doj,Gender,Weight,Address)
         cu.execute(query,val)
         con.commit()
         print("Data Entered Successfully")
@@ -125,15 +119,18 @@ def insert_into_emp():
     try:
         emp_id=input("Enter Employee ID:  ")
         emp_name=input("Enter Employee Name:  ")
-        sex=input("(M/F/O):")
+        gender=input("(M/F/O):")
         dob=input("Enter date of birth (yy-mm-dd):  ")
         desig=input("Enter designation:  ")
         mob_no=input("Enter phone number:  ")
         address=input("Enter Residential address:")
         query='''
-        insert into emp_table(emp_id,emp_name,gender,DOB,designation,mob_no,address)
-        values(%s,%s,%s,%s,%s,%s,%s)
-        val=(emp_id,emp_name,sex,dob,desig,mob_no,address)'''
+        insert into emp_table(emp_id,emp_name,gender,DOB,designation,mob_no,address)values(%s,%s,%s,%s,%s,%s,%s)
+        '''
+        
+        val=(emp_id,emp_name,gender,dob,desig,mob_no,address)
+        cu.execute(query,val)
+        con.commit()
         print('data entered successfully!')
     except Exception as e:
         print('Error:',e)
@@ -145,14 +142,14 @@ def display_package():
 
 def display_allmem():
     cu.execute("select * from mem_info")
-    print(tb.tabulate(cu,headers=['ID','Name','Age','Mobile_no','DOJ'],tablefmt='psql'))
+    print(tb.tabulate(cu,headers=['ID','Name','Mobile_no','DOJ','Gender','Weight','Address'],tablefmt='psql'))
     result=cu.fetchall()
     for i in result:
              print(i)
 
 def display_allemp():
-    cu.execute("select * from emp_tablex`")
+    cu.execute("select * from emp_table")
     print(tb.tabulate(cu,headers=['ID','Name','gender','DOB','designation','Mobile_no','address'],tablefmt='psql'))
     result=cu.fetchall()
     for i in result:
-             print(i)
+            print(i)

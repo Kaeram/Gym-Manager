@@ -1,27 +1,23 @@
 import mysql.connector as sql
 from functions import *
 
-con = sql.connect(
-  host="localhost",
-  user="root",
-  password="root"
-)
+con=sql.connect(host='localhost',user='root',password='root',database='Gym')
 
 if con.is_connected():
     print("sucessfully connected")
-
-con.cursor().execute("CREATE DATABASE fitness")
-print("Database Successfully Created")
-con.cursor().execute("USE fitness")
-con.cursor().execute('create table log_in(cust_name  varchar(65), account_no  int, password int)')
-print("Log_in table created")
-con.cursor().execute('create table customer_table(f_name varchar(65),price int,wieght int,cust_name varchar(65), phone_no bigint)')
-print("Customer table created")
-con.commit()
+cu=con.cursor()
 
 print("Creating prerequisites...")
+print("Creating Tables...")
+print("Hacking NASA...")
 create_table_Meminfo()
 emp_table()
 package_data()
-
-print("DONE")
+query2='''insert into package values(1,'Beginner','Y',1000)'''
+query3='''insert into package values(2,'Amatuer','Y',1500)'''
+query4='''insert into package values(3,'Experienced','N',3000)'''
+cu.execute(query2)
+cu.execute(query3)
+cu.execute(query4)
+con.commit()
+print("DONE...Safe to exit")
