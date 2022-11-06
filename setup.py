@@ -9,7 +9,7 @@ cu=con.cursor()
 
 print("Creating prerequisites...")
 print("Creating Tables...")
-print("Hacking NASA...")
+print("Hacking NASA... ;)")
 create_table_Meminfo()
 emp_table()
 package_data()
