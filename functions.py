@@ -153,3 +153,24 @@ def display_allemp():
     result=cu.fetchall()
     for i in result:
             print(i)
+
+def del_mem_rec():
+        Mem_ID=int(input("Enter id of member whose record you want to delete :"))
+        cu.execute("delete from mem_info where Mem_ID= %d"%(Mem_ID))
+        con.commit()
+        c=cu.rowcount
+        if c>0:
+            print("Record Deleted successfully ")
+        else:
+            print("Member with id ",Mem_ID," not found")    
+
+def del_emp_rec():
+    emp_id=int(input("Enter id of employee whose record you want to delete :"))
+    cu.execute("delete from emp_table where emp_id= %d"%(emp_id))
+    con.commit()
+    c=cu.rowcount
+    if c>0:
+        print("Record Deleted successfully ")
+    else:
+       print("Member with id ",emp_id," not found")    
+ 

@@ -27,6 +27,7 @@ def main():
     print ("M1. Add Customer")
     print ("M2. Show all packages")
     print ("M3. Show all customers")
+    print ("M4. Delete Member Record")
     print ("Type 'Quit' or 'Exit' to exit")
     ch=str(input("Enter your choice:"))
     if ch=='M1'or ch=="m1":
@@ -43,9 +44,9 @@ def main():
         menu() 
 
     elif ch=='M4' or ch=='m4':
-        #find_mem()
-        menu()       
-
+        del_mem_rec()     
+    
+    
     elif ch=="cleanslate":
          cleanslate()
          menu()
@@ -62,6 +63,7 @@ def admin():
             print("Type 'cleanslate' to clear database")
             print("A1.Add Employee")
             print("A2.Show All Employees")
+            print("A3.Delete Employee Record")
             ch=str(input("Enter choice:  "))
             if ch=='concheck':
                 concheck()
@@ -77,7 +79,10 @@ def admin():
             elif ch=="A2" or ch=="a2":
                 display_allemp()
                 main() 
-            
+
+            elif ch=='A3' or ch=='a3':
+                del_emp_rec()
+
             elif ch=='quit' or 'Quit' or 'exit' or 'Exit':
                 print("Developed by Kaushike Ramanathan, Amrit Nigam and Shourya Hedaoo as Investigatory Project")
                 quit()
