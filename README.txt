@@ -1,4 +1,4 @@
-Final Build (V.5)
+Final Build (v0.1.0)
 
 Gym-Manager
 Fitness centre management system made by Kaushike Ramanathan, Amrit Nigam Nigameshwar Sugyani Subudhi Patra & Shourya Hedaoo 
@@ -11,4 +11,4 @@ dev tools:
      concheck()
      UserID: admin
 
-run setup.py before main
+!!! run setup.py before main !!!
